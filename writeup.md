@@ -30,7 +30,7 @@ The goals / steps of this project are the following:
 ---
 ### Writeup / README
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  
 
 You're reading it!
 
@@ -38,7 +38,7 @@ You're reading it!
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).  
+The code for this step is contained in the 4th code cell of the IPython notebook. For extraction of HOG features I defined a function `get_hog_features()`.
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
@@ -53,7 +53,16 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and...
+I tried various combinations of parameters and found that the HOG image for the below parameters worked well. Mainly the image showed a good difference in structure for car and non-car image inputs. Obviously there were other combination of parameters which worked better but they resulted in more number of features per image. 
+
+| HOG parameters         		|     Value           |
+|:-------------------------:|:-------------------:|
+| Orientations              | 5                   |
+| Pixels per cell           | 8                   |
+| Cells per block           | 2                   |
+| Hog channel               | 0                   |
+| Color space               | YCrCb               |
+
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
