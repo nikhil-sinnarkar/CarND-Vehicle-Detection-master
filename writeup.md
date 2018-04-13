@@ -75,7 +75,7 @@ The final feature vector length for the selected parameters was 1226.
 
 The code for training the classifier is contained in cell 7 of my jupyter notebook.
 
-Training the classifier was a iterative process for me. I would set the parameters and train the classifier and run the classifier on test data to see the accuracy. With the linear SVC I got around only 96% accuracy. This was causing many false detections in the image. So I tried SVC with `rbg` kernel. This increased the accuracy to 98%. I again tried to fine tune my parameters and once I got the desired accuracy I stopped the iteration.
+Training the classifier was a iterative process for me. I would set the parameters and train the classifier and run the classifier on test data to see the accuracy. With the linear SVC I got around only 96% accuracy. This was causing many false detections in the image. So I tried SVC with `rbf` kernel. This increased the accuracy to 98%. I again tried to fine tune my parameters and once I got the desired accuracy I stopped the iteration.
 
 ### Sliding Window Search
 
