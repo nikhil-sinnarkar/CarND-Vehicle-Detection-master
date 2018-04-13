@@ -63,10 +63,19 @@ I tried various combinations of parameters and found that the HOG image for the 
 | Hog channel               | 0                   |
 | Color space               | YCrCb               |
 
+Along with HOG features I also used binned spatial and color histogram features. The parameters for them were:
+
+Number of bins for spatial binnig : 8
+
+Number of bins for color histogram : 12
+
+The final feature vector length for the selected parameters was 1226.
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+The code for training the classifier is contained in cell 7 of my jupyter notebook.
+
+Training the classifier was a iterative process for me. I would set the parameters and train the classifier and run the classifier on test data to see the accuracy. With the linear SVC I got around only 96% accuracy. This was causing many false detections in the image. So I tried SVC with `rbg` kernel. This increased the accuracy to 98%. I again tried to fine tune my parameters and once I got the desired accuracy I stopped the iteration.
 
 ### Sliding Window Search
 
