@@ -42,7 +42,7 @@ The code for this step is contained in the 4th code cell of the IPython notebook
 
 I started by reading in all the `vehicle` and `non-vehicle` images. I explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
+Here is an example using the `YCrCb` color space and HOG parameters of `orientations=5`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 
 ![6](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/6.png)
@@ -73,7 +73,7 @@ The final feature vector length for the selected parameters was 1208.
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-The code for training the classifier is contained in cell 7 of my jupyter notebook.
+The code for training the classifier is contained in cell 7 of my jupyter [notebook](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/Notebook.ipynb).
 
 Training the classifier was a iterative process for me. I would set the parameters and train the classifier and run the classifier on test data to see the accuracy. With the linear SVC I got around only 95% accuracy. This was causing many false detections in the image. So I tried SVC with `rbf` kernel. This increased the accuracy to 97%. I again tried to fine tune my parameters and once I got the desired accuracy I stopped the iteration.
 
@@ -81,6 +81,7 @@ Training the classifier was a iterative process for me. I would set the paramete
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
+The code is conatained in cell 10 of my [notebook](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/Notebook.ipynb).
 First I analysed a few random frames from the project video to get an idea of where exactaly the road is and where could the carrs be. This gave me a rough estimate of the area over which I needed to slide the window to detect vehicles. Lets call this area as `scan_area`. I took windows of 4 different sizes - 56x56, 64x64, 96x96 and 128x128. Now, I don't have to slide all the windows over the full `scan_area` this is because the size of the vehicle changes depending on where it is in the `scan_area`. So I set the start and stop positions of my 4 different size windows accordingly. Here is an example of it:
 
 ![1](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/1.png)
@@ -96,13 +97,14 @@ I tweaked the parameters of to get the best result from the classifier. I experi
 
 ![2](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/2.png)
 
-Note: All the green boxes show window where I get a positive detection for vehicle.
+Here all the green boxes show window where I get a positive detection for vehicle.
+
 ---
 
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/video_output/project_video.mp4)
+Here's a [link to my video result](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/video_output/project_video.mp4).
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
@@ -115,9 +117,13 @@ After I get the average heatmap I apply a threshold over it to eliminate the fal
 I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
 Here's an example result showing various steps:
-
+Example 1.
 ![3](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/3.png)
+
+Example 2.
 ![4](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/4.png)
+
+Example 3.
 ![5](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/5.png)
 
 ---
