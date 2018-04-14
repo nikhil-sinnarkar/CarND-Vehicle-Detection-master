@@ -46,6 +46,9 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 
 ![6](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/6.png)
+
+Here is another example:
+
 ![7](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/7.png)
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
