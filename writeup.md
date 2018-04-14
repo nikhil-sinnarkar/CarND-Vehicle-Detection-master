@@ -81,9 +81,13 @@ Training the classifier was a iterative process for me. I would set the paramete
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
+First I analysed a few random frames from the project video to get an idea of where exactaly the road is and where could the carrs be. This gave me a rough estimate of the area over which I needed to slide the window to detect vehicles. Lets call this area as `scan_area`. I took windows of 4 different sizes - 56x56, 64x64, 96x96 and 128x128. Now, I don't have to slide all the windows over the full `scan_area` this is because the size of the vehicle changes depending on where it is in the `scan_area`. So I set the start and stop positions of my 4 different size windows accordingly. Here is an example of it:
 
 ![alt text][image3]
+
+As for setting up the overlap values, the more the overlap is the better it is. But there is a disadvantage of increasing the overlap between the windows. It increases the number of windows and inturn the number of computations performed for every frame of the video. On the flip side if I reduce the overlap I was loosing on some of the detections. As a starting point I kept the overlap to 50% and started increasing it until a point where I didn't loose any detection for any of the frame. The overlap value of 75% worked for my case. But for the windows of size 96x96 I had to overlap them to 80% to accomodate for the vehicles coming in from the side and moving forward.
+
+The setting up of window sizes is done inside `pipeline()` method which is defined in `VideoProcessor()` class. Once I have the list of all the windows I pass them to 'run_classifier()`. This method runs the classifier on all the windows and the returns only the windows where it detects a vehicle. 
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
