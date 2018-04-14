@@ -14,16 +14,6 @@ The goals / steps of this project are the following:
 * Build a pipeline and run it on the video.
 
 
-[//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
-
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
@@ -117,6 +107,7 @@ After I get the average heatmap I apply a threshold over it to eliminate the fal
 I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
 Here's an example result showing various steps:
+
 Example 1.
 ![3](https://github.com/nikhil-sinnarkar/CarND-Vehicle-Detection-master/blob/master/writeup/3.png)
 
